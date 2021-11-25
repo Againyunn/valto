@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>같이가치</title>
+    {% load static %}
+    <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+    <!--자동 업데이트 로직(수정 금지)-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript">
+ // var auto_refresh = setInterval(
+ // function ()
+ // {
+   //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+//}, 5000);
+</script>
+    <!--자동 업데이트 로직(수정 금지)-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/
+  Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+            integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</head>
+
+
+<body style="margin: 0;">
+
+<!--  회원가입 기능-->
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="login-form">
+
+            <a href="{% url 'kapchikachi:main' %}"><div class="img-fluid"><img src="{%static 'img/valto.png'%}" style=" width: 150px;max-height: 150px;"></div></a>
+
+{% load crispy_forms_tags %}
+            <!--  로그인 창 구현-->
+            <div class="form-group">
+                <form method="post" class="post-form" action="{% url 'common:login' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {% include "./formerrors.html" %}
+                    <input type="text" class="form-control" name="username" id="username"
+                           placeholder="ID"  value="{{ form.username.value|default_if_none:'' }}" style="width: 260px">
+                    <input type="password" class="form-control" name="password" id="password"
+                           placeholder="비밀번호"  value="{{ form.password.value|default_if_none:'' }}"style="width: 260px">
+                    <button type="submit" class="submit-btn"style="width: 260pxs;font-family:GyeonggiTitleM; ;"><b>로그인</b></button>
+
+
+                </form>
+            </div>
+            <div class="links">
+                <a href="{% url 'common:signup' %}" style="font-family:GyeonggiTitleM; ;"><b>회원가입 / </b></a>
+                <a href="{% url 'kapchikachi:Notice_info' %}" style="font-family:GyeonggiTitleM; ;"><b>이용약관</b></a>
+            </div>
+            <div class="links">
+                {% load socialaccount %}
+                {% if request.user.is_authenticated %}
+                <p>{{ request.user.username }}</p>
+                <br>
+                <a href="{% url 'common:logout' %}" style="font-family:GyeonggiTitleM; ;">로그아웃</a>
+                <br>
+                <!--    개인 계정 페이지로 이동(개인정보확인 및 수정/ 구매내역 확인)-->
+                {% else %}
+                <a href="{% provider_login_url 'naver' %}"><img src="{%static 'img/naver.png'%}" style="width: 25px;height: 25px;margin-left: 2px;"></a>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<!----sns 로그인 구현 예정-->
+<div class="row"></div>
+</body>
+</html>

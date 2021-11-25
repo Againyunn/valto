@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>같이가치</title>
+        {% load static %}  
+        <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+        <!--자동 업데이트 로직(수정 금지)-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+        <script type="text/javascript">
+       // var auto_refresh = setInterval(
+       // function ()
+       // {
+         //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+    //}, 5000);
+    </script>
+    <!--자동 업데이트 로직(수정 금지)-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+        integrity="sha384-Smlep5jCw/wG7hdkwQ/
+        Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body style="background-color:white;">
+
+        <!--사이트 헤더-->
+        <header class="header bg-white bg-opacity-100" >
+    
+
+            {% load socialaccount %}
+            {% if request.user.is_authenticated %}
+            <div class="row">
+                <div class="col-6">
+                    
+            </div>
+            <div class="col-6">
+                <a style="font-family:GyeonggiTitleM;float:right;text-decoration:none;" href="{% url 'common:logout' %}">로그아웃</a><br>
+                <a href="{% url 'kapchikachi:Check_personal_buy' %}" style="font-family: GyeonggiTitleM;float: right;text-decoration:none;">구매이력</a></div>
+                
+               
+            </div>
+            </div>
+        <!--    개인 계정 페이지로 이동(개인정보확인 및 수정/ 구매내역 확인)-->
+        {% else %}
+        <div class="row">
+            <div class="col-6">
+                <a style="font-family:GyeonggiTitleM;float:left;text-decoration:none;"></a></div>
+            <div class="col-6">
+                <a href="{% url 'common:login' %}" style="font-family: GyeonggiTitleM;float:right;">Log-in</a>
+            </div>
+        </div>
+        {% endif %}
+    
+        
+        
+         <span class="site-heading"style="text-align :center;">
+            <div class="row"><a href="{% url 'kapchikachi:main' %}"><img src="{%static 'img/logo2-remove.png'%}" style="max-width: 200px;max-height: 200px;margin-left: auto;margin-right: auto;"></a></div>
+                <div class="row"style="background-color:blanchedalmond;padding-bottom:10px;padding-top: 10px;" >   
+                    <div class="col-4"><a href="{% url 'kapchikachi:main' %}" style="font-family:GyeonggiTitleM;font-size:2.5vh;padding-top: 5px;text-decoration:none;"><b>Home</b></a></div>
+                    <div class="col-4"><a href="{% url 'kapchikachi:Products' %}" style="font-family:GyeonggiTitleM;font-size:2.5vh;"><b>Products</b></a></div>
+                    <div class="col-4"><a href="{% url 'kapchikachi:SelectPayOption' %}" id ="Shopping"style="font-family:GyeonggiTitleM;font-size:2.5vh;padding-top: 5px;text-decoration:none;"><b>Shopping</b></a></div>
+            </div>    
+        </span>
+    </header>        
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8" style="text-align: center;">
+            <a href="{% url 'kapchikachi:aboutus' %}"><img src="{%static 'img/Main.png'%}" class="img-fluid" style="margin-top:15px;height:300px;align-content: center;"></a>
+    </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <div class="container" style="margin-top: 30px;">
+
+    
+                    <!-----제품 카루셀 -->
+                <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+
+                    <h3 style="color:black;font-family:GyeonggiTitleM;"><b>Products</b></h3>
+                    <a href="{% url 'kapchikachi:Products' %}" style="font-family:GyeonggiTitleM;font-size:2.5vh; float:right"><b>상품 보러가기</b></a>
+                  
+                    <div id ="products" class="carousel slide " date-ride="carousel" data-bs-ride="carousel" >
+                       
+                        <div class="carousel-inner" style="background-color:white;">
+                                <div class="carousel-item active" data-bs-interval="2500">
+                                    <img src="{%static 'img/catairpodpro4.jpg'%}"  class="d-block w-100" alt="First Slide" >
+                              </div>
+                                <div class="carousel-item" data-bs-interval="2500" >
+                                    <img src="{%static 'img/cpro1.jpg'%}"  class="d-block w-100 " alt="second Slide" >
+                                    
+                                   
+                                </div>
+        
+                                <div class="carousel-item " data-bs-interval="2500" >
+                                    <img src="{%static 'img/dogairpod12.jpg'%}" class="d-block w-100"alt="third slide">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500">
+                                    <img src="{%static 'img/dogairpodPro.jpg'%}" class="d-block w-100"alt= "fourth slide">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500" >
+                                    <img src="{%static 'img/catkeyrings.jpg'%}" class="d-block w-100 " alt= "fifth slide">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2500" >
+                                    <img src="{%static 'img/dogkeyrings.jpg'%}" class="d-block w-100 " alt= "sixth slide">
+                                </div>
+                                <div class="carousel-indicators" >
+                                    <button type="button" data-bs-target="#products" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" ></button>
+                                    <button type="button" data-bs-target="#products" data-bs-slide-to="1" aria-label="Slide 2" ></button>
+                                    <button type="button" data-bs-target="#products" data-bs-slide-to="2" aria-label="Slide 3" ></button>
+                                    <button type="button" data-bs-target="#products"  data-bs-slide-to="3" aria-label="Slide 4 "></button>
+                                    <button type="button" data-bs-target="#products" data-bs-slide-to="4" aria-label="Slide 5" ></button>
+                                    <button type="button" data-bs-target="#products" data-bs-slide-to="5" aria-label="Slide 6" ></button>
+                                  </div>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                </div>
+  
+        <!-----캠패인 참여하는 방법 및 상품소개-->
+        
+            <div class="row">
+                <div class="col-sm-2 "></div>
+                <div class="col-sm-8 " style="text-align: center;margin-top: 50px;margin-bottom: 5px;border-bottom: black solid 1px;padding-bottom: 15px; ">
+                    <h3 style="float:left;font-family:GyeonggiTitleM;"><b>Join Us!</b></h3> 
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <h4 style="font-family:GyeonggiTitleM;font-size: 3vh;"><b>제품 구매 후 <br> <span style="color:  #8A2BE2;">인스타그램</span>에 홍보해주세요!</b></h4>
+                    <span style="font-family:GyeonggiTitleM;color: #0064FF">
+                        <br>
+                        <br>
+                        <br>
+                        #가치에같이를더하다 #VALTO #유기견 #유기묘 #유기동물 #
+                        애완동물  #동물입양 #동물보호 #유기동물후원 #유기동물
+                        캠페인
+                        #동물캠페인 #동물사랑 #유기견입양 #유기묘 입양 #동물보호 
+                        프로젝트 #대학생프로젝트
+                        <br>
+                    </span>
+                
+                </div>
+                <div class="col-sm-2"></div>
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6"style="margin-top:30px;text-align:center;font-family:GyeonggiTitleM">
+            <h1 class="bg-transparent" style="font-size:3vh;font-family:GyeonggiTitleM;text-align: center;"><b>Adopt a pet! save a life!</b></h1>
+           </div>
+            <div class="col-sm-3"></div>
+   </div>
+
+   <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-4">
+    <canvas id ="dog-data"style="margin-top:20px;"></canvas>
+</div>
+    <div class="col-lg-4">
+    <canvas id ="cat-data" style="margin-top:20px;" ></canvas>
+</div>
+<div class="col-lg-2"></div>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    <canvas id ="money-data" style="margin-top: 20px; margin-bottom: 20px;width: 100vw;height:30vh" ></canvas>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+    <script>
+        var num = "{{total_donation}}"/10000;
+        var ctx = document.getElementById('dog-data').getContext('2d');
+        var ctx2 =document.getElementById('cat-data').getContext('2d');
+        var ctx3 = document.getElementById('money-data').getContext('2d');
+        const myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [ '보호중인 유기견','분양된 유기견','안락사,자연사'],
+        datasets: [{
+            label: '# of Votes',
+            data: [17050, 14300,25650],
+            backgroundColor: [
+                'rgba(240,203,133, 0.5)',
+                'rgba(220, 173, 103,0.5)',
+                'rgba(205, 133, 63, 0.5)'
+          
+                
+            ],
+            borderColor: [
+            'rgba(240,203,133, 0.5)',
+                'rgba(205, 133, 63, 0.5)',
+                'rgba(220, 173, 103,0.5)'
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+  
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const myChart1 = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: ['보호중인 유기묘','분양된 유기묘','안락사된 유기묘'],
+        datasets: [{
+            label: '# ',
+            data: [14760, 3700,15100],
+            backgroundColor: [
+            'rgba(255, 197 ,150, 0.5)',
+            'rgba(255, 167, 120,0.5)',
+                'rgba(255, 127, 80, 0.5)'
+
+                
+                
+            ],
+            borderColor: [
+            'rgba(255, 197 ,150, 0.5)',
+            'rgba(255, 167, 120,0.5)',
+            'rgba(255, 127, 80, 0.5)',
+
+                
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive:true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+const chart3=myChart3 =new Chart(ctx3,{
+   
+    type: 'horizontalBar',
+    data: {
+        labels: [''],
+        datasets: [{
+            label: '현재 모금된 후원액',
+            data: [num],
+            borderColor: "rgba(139, 69, 19,1)",
+            backgroundColor: "rgba(139, 69, 19,0.5)",
+            fill: false,
+        }]
+    },
+    options: {
+       
+
+        legend: {
+            display: false
+          },
+        title: {
+            display: true,
+            text: '현재 모금된 후원액'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        responsive: true,
+        scales: {
+            display: false,
+                    drawBorder: false,
+            xAxes: [{
+                gridLines:{
+                    display:false,
+                    drawBorder:false,
+                  
+                },
+             
+                scaleLabel: {
+                    display: true,
+                    labelString: '액수 단위(만원)',
+                    beginAtZero: true, 
+                  
+                   
+                },
+                ticks: {
+                   
+                    autoSkip: false,
+                    min: 0,
+                    max: 50,
+                  
+                },
+            }],
+            yAxes: [{
+                barPercentage:0.5,
+                display: true,
+                gridLines:{
+                    display:false,
+                    drawBorder:false
+                },
+                scaleLabel: {
+           
+                    labelString: '',
+                    display: true,
+                    
+                
+                }
+            }]
+        }
+    }
+});
+    </script>
+   
+    </div>
+</div>
+
+
+   </div>
+</div>
+
+<div class="container" style="margin-top: 20px;">
+<div class="row" >
+    <div class="col-2 "></div>
+    <div class="col-8">
+        <h3 style="font-family:GyeonggiTitleM"><b>응원의 메세지</b> </h3><br>
+        <div style="margin-bottom: 20px;padding-top: 30px;padding-left: 35px;" >
+   
+        <p style="font-family:GyeonggiTitleM; opacity:0;" class="say"><em><b>{{ran_comment_time1|date:'Y년 m월 d일 f'}} <br> {{ ran_comment1 }}</b></em></p>
+        <br>
+        <p style="font-family:GyeonggiTitleM; opacity:0;"class="say"><em><b>{{ran_comment_time2|date:'Y년 m월 d일 f'}} <br> {{ ran_comment2 }}</b></em></p>
+        <br>
+        <p style="font-family:GyeonggiTitleM; opacity:0;"class="say"><em><b>{{ran_comment_time3|date:'Y년 m월 d일 f'}} <br> {{ ran_comment3 }}</b></em></p>
+        <br>
+        </div>
+        <script>
+       $(document).ready(function() {
+    /* 1 */
+    $(window).scroll( function(){
+        /* 2 */
+        $('.say').each( function(i){
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            /* 3 */
+            if( bottom_of_window > bottom_of_object ){
+                $(this).animate({'opacity':'1'},500);
+            }
+        }); 
+    });
+});
+
+        </script>
+    </div>
+    <div class="col-2 "></div>
+    </div>
+</div><!----동물 -->
+
+<!--------유기묘 유기견 데이터-->
+
+
+<!--        댓글 랜덤 노출 기능 추가 요청-->
+
+
+
+        <!----사이트 footer-->
+    
+        <address class="footer text-faded text-center" style="display:block; width:100%;padding-top: 15px;padding-bottom: 3rempx;" >
+        <div class="row" >
+            <div class="col-3" >
+                <a href="{% url 'kapchikachi:Qna' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM ;text-decoration:none;"> QnA </a>
+            </div>
+
+            <div  class="col-3">
+                <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 개인정보처리방침</a> 
+            </div>
+       
+
+            <div class="col-3">
+                <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 사업자 정보 </a> 
+            </div>
+
+            <div class="col-3">
+                <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 이용약관</a> 
+            </div>
+        </div>
+
+        <div class="row" style="border-top: 1px solid black;margin-top:15px">
+            <div class="col-6" style="margin-top: 10px;">
+                <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> CALL CENTER</p><br>
+                <p style="font-family:GyeonggiTitleM;font-size:2vh">010-6378-9438 </p>
+                <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Open Am 10 : 00 – PM 05 : 00 </p>
+                <p style="font-family:GyeonggiTitleM;font-size:1.5vh">LUNCH PM 12 : 30 ~ 1 : 30 </p>
+                <p style="font-family:GyeonggiTitleM;font-size:1.5vh"><a href="https://open.kakao.com/me/value_together" style="font-family:GyeonggiTitleM;font-size:1.5vh;color:wheat;margin-top:2px;">오픈카카오톡</a></p>
+            </div>
+
+            <div class="col-6" style="margin-top: 10px;">
+                <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> Sponsor Us</p><br>
+                <p style="font-family:GyeonggiTitleM;font-size:2vh"> 국민 92030201552024</p>
+                <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Instagram <br>
+                    <a style="font-family:GyeonggiTitleM;font-size:1.5vh;color:wheat;" href="https://www.instagram.com/value__together/">@value__together</a></p>
+                   
+                    
+                
+            </div>
+            <div class="img-fluid"><img src="{%static 'img/valtowhite.png'%}" style=" max-width: 100px;max-height: 
+                100px;margin-left:auto;padding:0px; "></div>
+        
+    </address>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{%static 'Js/script.js'%}"></script>
+        <script src="{%static 'Js/chart.js'%}"></script>
+        
+    </body>
+</html>
+

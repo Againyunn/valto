@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구매이력</title>
+    <meta charset="UTF-8">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}  
+    <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+    <!--자동 업데이트 로직(수정 금지)-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript">
+   // var auto_refresh = setInterval(
+   // function ()
+   // {
+     //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+//}, 5000);
+</script>
+<!--자동 업데이트 로직(수정 금지)-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+    integrity="sha384-Smlep5jCw/wG7hdkwQ/
+    Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+    integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:white;">
+<div class="container">
+    <div class="row" style="align-content: center;">
+        <a href="{% url 'kapchikachi:main' %}" style=" max-width: 200px;max-height: 200px;margin-left: auto;margin-right: auto;"> <img src="{%static 'img/valto.png'%}" style=" max-width: 200px;max-height: 200px;margin-left: auto;margin-right: auto;"></a></div>
+<p style="font-family: GyeonggiTitleM;font-size: 8vh;text-align:center" >주 문 내 역</p>
+<a href="javascript:open1();">
+<h1 style="font-family: GyeonggiTitleM;"> 1번째 주문</h1></a>
+<div id ="order1">
+<h2>{{first_not_found}}</h2>
+<table style="font-family: GyeonggiTitleM;" class="table table-hover">
+<tbody>
+<tr>
+<td>{{first_personal_created|date:'Y년 m월 d일 p'}}</td>
+</tr>
+<tr>
+<td >{{first_personal_receiver_name}}</td>
+</tr>
+<tr>
+<td >{{first_personal_receiver_phone}}</td>
+</tr>
+<tr>
+<td >{{first_personal_product}}</td>
+</tr>
+
+<tr>
+<td >{{first_personal_shipping}}</td>
+</tr>
+<tr>
+    <td >{{first_personal_address}}</td>
+</tr>
+
+<tr>
+<td>{{first_personal_comment}}</td>
+</tr>
+
+<tr>
+<td>{{first_time_str}}{{first_personal_order_created}}</td>
+</tr>
+
+<tr>
+<td>{{first_personal_order_num}}</td>
+</tr>
+<tr>
+<td>{{first_personal_shipping_state}}</td>
+</tr>
+
+<tr>
+<td>{{first_personal_order_deposit_name}}</td>
+</tr>
+<tr>
+<td >{{first_personal_order_deposit_check}}</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<a href="javascript:open2();" ><h1 style="font-family: GyeonggiTitleM;">2번째 주문</h1></a>
+<div id="order2" >
+<h2>{{second_not_found}}</h2>
+<table class="table table-hover" style="font-family: GyeonggiTitleM;">
+<tbody>
+    <tr>
+    <td>{{second_personal_created|date:'Y년 m월 d일 p'}}</td>
+    </tr>
+    <tr>
+    <td >{{second_personal_receiver_name}}</td>
+    </tr>
+    <tr>
+    <td >{{second_personal_receiver_phone}}</td>
+    </tr>
+    <tr>
+    <td >{{second_personal_product}}</td>
+    </tr>
+    
+    <tr>
+    <td >{{second_personal_shipping}}</td>
+    </tr>
+
+    <tr>
+    <td >{{second_personal_address}}</td>
+    </tr>
+    
+    <tr>
+    <td>{{second_personal_comment}}</td>
+    </tr>
+    
+    <tr>
+    <td>{{second_time_str}}{{second_personal_order_created}}</td>
+    </tr>
+    
+    <tr>
+    <td>{{second_personal_order_num}}</td>
+    </tr>
+    <tr>
+    <td>{{second_personal_shipping_state}}</td>
+    </tr>
+    
+    <tr>
+    <td>{{second_personal_order_deposit_name}} </td>
+    </tr>
+    <tr>
+    <td >{{second_personal_order_deposit_check}}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</div>
+
+<a href="javascript:open3();" ><h1 style="font-family:GyeonggiTitleM;">3번째 주문</h1></a>
+<div id="order3">
+<h2>{{third_not_found}}</h2>
+
+<table class="table table-hover" style="font-family: GyeonggiTitleM;">
+    <tbody>
+        <tr>
+        <td>{{third_personal_created|date:'Y년 m월 d일 p'}}</td>
+        </tr>
+        <tr>
+        <td >{{third_personal_receiver_name}}</td>
+        </tr>
+        <tr>
+        <td >{{third_personal_receiver_phone}}</td>
+        </tr>
+        <tr>
+        <td >{{third_personal_product}}</td>
+        </tr>
+        
+        <tr>
+        <td >{{third_personal_shipping}}</td>
+        </tr>
+
+        <tr>
+        <td >{{third_personal_address}}</td>
+        </tr>
+        
+        <tr>
+        <td>{{third_personal_comment}}</td>
+        </tr>
+        
+        <tr>
+        <td>{{third_time_str}}{{third_personal_order_created}}</td>
+        </tr>
+        
+        <tr>
+        <td>{{third_personal_order_num}}</td>
+        </tr>
+        <tr>
+        <td>{{third_personal_shipping_state}}</td>
+        </tr>
+        
+        <tr>
+        <td>{{third_personal_order_deposit_name}} </td>
+        </tr>
+        <tr>
+        <td >{{third_personal_order_deposit_check}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<script>
+function open1(){
+    var con = document.getElementById("order1");
+    if(con.style.display=='none'){
+        con.style.display = 'block';
+    }else{
+        con.style.display = 'none';
+    }
+}
+function open2(){
+    var con = document.getElementById("order2");
+    if(con.style.display=='none'){
+        con.style.display = 'block';
+    }else{
+        con.style.display = 'none';
+    }
+
+}   
+function open3(){ 
+    var con = document.getElementById("order3");
+    if(con.style.display=='none'){
+        con.style.display = 'block';
+    }else{
+        con.style.display = 'none';
+    }
+}
+</script>
+
+</div>
+<address class="footer text-faded text-center" style="display:block; width:100%;padding-top: 15px;padding-bottom: 3rempx;" >
+    <div class="row" >
+        <div class="col-3" >
+            <a href="{% url 'kapchikachi:Qna' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM ;text-decoration:none;"> QnA </a>
+        </div>
+
+        <div  class="col-3">
+            <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 개인정보처리방침</a> 
+        </div>
+   
+
+        <div class="col-3">
+            <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 사업자 정보 </a> 
+        </div>
+
+        <div class="col-3">
+            <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 이용약관</a> 
+        </div>
+    </div>
+
+    <div class="row" style="border-top: 1px solid black;margin-top:15px">
+        <div class="col-6" style="margin-top: 10px;">
+            <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> CALL CENTER</p><br>
+            <p style="font-family:GyeonggiTitleM;font-size:2vh">010-6378-9438 </p>
+            <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Open Am 10 : 00 – PM 05 : 00 </p>
+            <p style="font-family:GyeonggiTitleM;font-size:1.5vh">LUNCH PM 12 : 30 ~ 1 : 30 </p>
+        </div>
+
+        <div class="col-6" style="margin-top: 10px;">
+            <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> Sponsor Us</p><br>
+            <p style="font-family:GyeonggiTitleM;font-size:2vh"> 국민 92030201552024</p>
+            <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Instagram<br>
+                <a style="font-family:GyeonggiTitleM;font-size:1.5vh;color:wheat" href="https://www.instagram.com/value__together/">value__together</a> 
+            </p>
+        </div>
+        <div class="img-fluid"><img src="{%static 'img/valtowhite.png'%}" style=" max-width: 100px;max-height: 
+            100px;margin-left:auto;padding:0px; "></div>
+    
+</address>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{%static 'Js/script.js'%}"></script>
+    <script src="{%static 'Js/chart.js'%}"></script>
+    
+</body>
+
+</html>

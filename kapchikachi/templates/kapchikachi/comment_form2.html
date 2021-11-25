@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구매</title>
+</head>
+<body>
+
+<!--기부자 결제 및 코멘트 남기는 창-->
+
+<!--로그인한 사용자 식별용-->
+{% if request.user.is_authenticated %}
+<p>{{ request.user.username }}</p>
+{% endif %}
+
+
+<!--코멘트 생성 기능-->
+<div class="container">
+    <h1> 구매 </h1>
+    <h3 style="float:right">{{ comment.author }}</h3>
+    <form method="POST" class="post-form my-3">
+        {% csrf_token %}
+
+        <!--        {{ form.as_p }}-->
+        <h3><a href="{% url 'kapchikachi:CommentCreate' %}">수정하기</a></h3>
+        <br>
+        <div>수취자{{ this_receiver_name }}</div>
+        <br>
+        <div>수취자 번호{{ this_receiver_phone }}</div>
+        <br>
+        <div>강아지 에어팟1세대 케이스{{ form.dog_case1 }}</div>
+        <br>
+        <div>강아지 에어팟 프로 케이스{{ form.dog_case2 }}</div>
+        <br>
+        <div>강아지 키링{{ form.dog_keyring }}</div>
+        <br>
+        <div>고양이 에어팟1세대 케이스{{ form.cat_case1 }}</div>
+        <br>
+        <div>고양이 에어팟2세대 케이스{{ form.cat_case2 }}</div>
+        <br>
+        <div>고양이 키링{{ form.cat_keyring }}</div>
+        <br>
+        <div>배송방법 선택{{ form.shipping }}</div>
+        <h4>{{warning}}</h4>
+        <br>
+        <div>배송주소{{ form.detail_address }}</div>
+        <h4>{{ warning_address }}</h4>
+        <br>
+        <div>한국외대 여부{{ form.hufs }}</div>
+        <br>
+        <div>남기고 싶은 말{{ form.content }}</div>
+        <h4>{{warning}}</h4>
+        <br>
+
+
+
+        <!--        <div>-->
+        <!--            금액-->
+        <!--            총 금액 연산해주기(js 로)-->
+        <!--        </div>-->
+        <button type="submit">금액확인</button>
+    </form>
+</div>
+
+</body>
+</html>

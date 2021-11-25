@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>같이가치</title>
+        {% load static %}  
+        <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+        <!--자동 업데이트 로직(수정 금지)-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+        <script type="text/javascript">
+       // var auto_refresh = setInterval(
+       // function ()
+       // {
+         //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+    //}, 5000);
+    </script>
+    <!--자동 업데이트 로직(수정 금지)-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+        integrity="sha384-Smlep5jCw/wG7hdkwQ/
+        Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    </head>
+    <body style="background-color:white;">
+
+
+        <!--사이트 헤더-->
+        
+
+        <section class="page-section about-heading">
+            <div class="container">
+                <div class="about-heading-content">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-10 mx-auto" style="font-family:Pretendard-Regular;">
+                            <div class="bg-faded rounded p-5">
+                                <h2 class="section-heading mb-4">
+                                    <span class="section-heading-lower" style="font-family:Pretendard-Regular;text-align: center;"><b>Q&A</b></span>
+                                </h2>
+                                <p style="font-size: 3vh;"><b>교환 및 반품 안내</b></p>
+                                <p class="mb-0"style="font-size: 2vh;border-bottom:peru dotted 6px;margin-top: 15px;">
+                                    상품 수령 후 3일 이내에 valto 오픈 카카오톡으로 접수를 해주셔야 합니다.<br>
+                                    valto에서는 교환&반품시 오픈카톡( https://open.kakao.com/me/value_together)으로 연락 주셔야 합니다.<br>
+                                    반품의 경우 신청 후 재포장을 하시고 우체국택배 반품접수를 진행하시면 됩니다. 상품이 도착하면 검수 후 상품에 이상이 없을 시 교환 / 반품을 진행해드립니다.<br>
+                                    고객의 단순 변심으로 인한 환불은 불가하며, 교환 사유가 구매자 책임 사유인 경우 교환 배송비가 발생합니다.<br>
+                                    <br>
+                                </p>
+                                <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>교환&반품 처리비용 및 방법</b></p>
+                                <p class="mb-0"style="font-size: 2vh;">
+                                    일반 교환 & 반품 : 5000원(왕복 택배비)<br>
+                                    교환 & 반품 비용은 택배상자 안에 동봉해주시기 바라며, 미 동봉시 교환 & 환불이 지연될 수 있습니다.<br>
+                                    반품 비용 미 동봉을 원하실 경우 Q&A 혹은 오픈 카카오톡으로 접수할 때에 말씀해주시면 금액을 차감하여 환불해 드리겠습니다.<br>
+                                    상품이 불량이거나 오배송일 경우 택배비는 전액 무료로 교환처리 됩니다.<br>
+                                    <br>
+                                    <br>
+
+                                </p>
+                            </div>
+                            <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>교환&반품 주소</b></p>
+                                <p class="mb-0"style="font-size: 2vh;">
+                                    경기도 용인시 처인구 <br>백옥대로 2402번길 37 – 4<br>
+                                    <br>
+                                </p>
+                            </div>
+                            <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>고객센터</b></p>
+                                <p class="mb-0"style="font-size:2vh;">
+                                    010 – 6378 – 9438<br>
+                                    Open Am 10 : 00 – PM 05 : 00 
+                                    <br>LUNCH PM 12 : 30 ~ 1 : 30<br>
+                                    토요일, 일요일, 공휴일 휴무<br>
+                                    <br>
+                                </p>
+                            </div>
+                          
+                            <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>입금 확인</b></p>
+                                <p class="mb-0"style="font-size: 2vh;">
+                                    입금 확인 평균 시간은 2시간이내이며, 입금 확인 후 송장번호와 함께 확인 문자가 발송됩니다.<br>
+                                    주문 확인상태가 '입금 확인 완료'로 바뀌면 주문이 완료된 상태입니다.
+                                    <br>
+                                    <br>
+                                </p>
+                            </div>
+                            <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>배송 안내</b></p>
+                                <p class="mb-0"style="font-size: 2vh;">
+                            
+                            배송은 매주 월요일, 수요일에 순차적으로 발송됩니다.<br>
+                            배송은 우체국 택배로 진행됩니다.<br>
+                            배송은 평균 7일이내로 완료됩니다.
+                                    <br>
+                                    <br>
+
+                                </p>
+                            </div>
+                            <div class style="border-bottom:peru dotted 6px;margin-top: 15px;">
+                                <p style="font-size: 3vh;"><b>현금 영수증 안내</b></p>
+                                <p class="mb-0"style="font-size: 2vh;">
+                            
+                                    현금 영수증을 필요로 하시는 분은 고객센터에 적힌 번호로 연락 주시거나 오픈 카카오톡을 통해 문의 부탁드립니다.
+                                    <br>
+                                    <br>
+
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+     
+        <!----사이트 footer-->
+        <address class="footer text-faded text-center" style="display:block; width:100%;padding-top: 15px;padding-bottom: 3rempx;" >
+            <div class="row" >
+                <div class="col-3" >
+                    <a href="{% url 'kapchikachi:Qna' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM ;text-decoration:none;"> QnA </a>
+                </div>
+    
+                <div  class="col-3">
+                    <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 개인정보처리방침</a> 
+                </div>
+           
+    
+                <div class="col-3">
+                    <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 사업자 정보 </a> 
+                </div>
+    
+                <div class="col-3">
+                    <a href="{% url 'kapchikachi:Notice_info' %}" style="color:wheat;font-size:10px;font-family:GyeonggiTitleM;text-decoration:none;"> 이용약관</a> 
+                </div>
+            </div>
+    
+            <div class="row" style="border-top: 1px solid black;margin-top:15px">
+                <div class="col-6" style="margin-top: 10px;">
+                    <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> CALL CENTER</p><br>
+                    <p style="font-family:GyeonggiTitleM;font-size:2vh">010-6378-9438 </p>
+                    <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Open Am 10 : 00 – PM 05 : 00 </p>
+                    <p style="font-family:GyeonggiTitleM;font-size:1.5vh">LUNCH PM 12 : 30 ~ 1 : 30 </p>
+                    <p style="font-family:GyeonggiTitleM;font-size:1.5vh"><a href="https://open.kakao.com/me/value_together" style="font-family:GyeonggiTitleM;font-size:1.5vh;color:wheat;margin-top:2px;">오픈카카오톡</a></p>
+                </div>
+    
+                <div class="col-6" style="margin-top: 10px;">
+                    <p style="font-family:GyeonggiTitleM;font-size:3vh;color:wheat"> Sponsor Us</p><br>
+                    <p style="font-family:GyeonggiTitleM;font-size:2vh"> 국민 92030201552024</p>
+                    <p style="font-family:GyeonggiTitleM;font-size:1.5vh">Instagram <br>
+                    <a style="font-family:GyeonggiTitleM;font-size:1.5vh;color:wheat;margin-top:2px;" href="https://www.instagram.com/value__together/">@value__together</a></p>
+                </div>
+                <div class="img-fluid"><img src="{%static 'img/valtowhite.png'%}" style=" max-width: 100px;max-height: 
+                    100px;margin-left:auto;padding:0px; "></div>
+            
+        </address>
+  
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

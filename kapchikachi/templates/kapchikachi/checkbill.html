@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결제완료</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}  
+    <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+    <!--자동 업데이트 로직(수정 금지)-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript">
+   // var auto_refresh = setInterval(
+   // function ()
+   // {
+     //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+//}, 5000);
+</script>
+<!--자동 업데이트 로직(수정 금지)-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+    integrity="sha384-Smlep5jCw/wG7hdkwQ/
+    Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+    integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:white;">
+<div class="container">
+  <div id="myModal" class="modal" style=" display: flex; justify-content: center;">
+ 
+    <!-- Modal content -->
+    <div class="modal-content" style="text-align: center;width: 400px;height: 400px;margin-left: auto; margin-right: auto;" >
+          <img src ="{%static 'img/thankyou.jpg'%}" class="img-fluid">
+              <button class="btn btn-secondary" style="font-size: 13pt;font-family:GyeonggiTitleM ;" onClick="close_pop();" >
+                   <b>닫기</b>
+              </button>
+          </div>
+    </div>
+
+  </div>
+
+
+
+    <script type="text/javascript">
+      
+      let isElement = document.querySelector('#myModal');
+isElement.style.opacity = 0.1;
+function Effect_With_JS(){
+	let isCount = 0;
+	isElement.style.opacity = 0.1;
+	let period = setInterval(function(){
+		isElement.style.opacity = isCount;
+		isCount = isCount + 0.1;
+	if(isCount >1.0){
+		clearInterval(period);
+	}
+	},100);
+
+
+
+}
+
+Effect_With_JS();
+
+
+      //팝업 Close 기능
+      function close_pop(flag) {
+           $('#myModal').fadeOut();
+      };
+      
+
+
+ 
+  </script>
+
+
+
+  </div>
+
+
+
+<table style="width: 100%;" class="table table-striped">
+  <thead>
+    <th>주문정보</th>
+    <th></th>
+  </thead>
+<tbody>
+<tr>
+  <td>주문시각</td> 
+  <td>{{this_created}}</td>
+</tr>
+<tr>
+  <td>주문번호</td>
+  <td>{{this_order_num}}</td>
+</tr>
+<tr>
+    <td>예금주</td> 
+    <td>{{this_deposit_name}}</td>
+</tr>
+<tr>
+    <td>입금확인 상태</td> 
+    <td>{{this_deposit_check}}</td>
+</tr>
+
+<tr>
+  <td>수취인 명</td> <td>{{this_receiver}}</td>
+</tr>
+<tr>
+  <td>전화번호</td>
+  <td>{{this_receiver_phone}}</td>
+</tr>
+
+<tr>
+  <td>배송방법</td> 
+  <td>{{this_shipping}}</td>
+</tr>
+
+<tr>
+  <td>배송주소</td> 
+  <td>{{this_address}}</td>
+</tr>
+
+<tr>
+  <td>액수</td>
+  <td>{{this_sell}} 원</td>
+</tr>
+
+<tr>
+  <td>응원 메세지</td>
+  <td>{{this_comment}}</td>
+</tr>
+</tbody>
+</table>
+<p style="font-family:GyeonggiTitleM;margin-top:20px">  <b>* 정보를 잘못 입력하신 고객님께서는 <a href="https://open.kakao.com/me/value_together">오픈카카오톡</a>으로 '예금주 명'과 '주문번호'와 함께 변경사항을 알려주시면 신속하게 반영하겠습니다.
+  valto 일동 올림.</b>
+  </p>
+<button class="btn btn-outline-secondary"><a href="{%url 'kapchikachi:main' %}">메인페이지</a></button>
+<button class="btn btn-outline-secondary"><a href="{%url 'kapchikachi:Check_personal_buy' %}">구매이력 확인</a></button>
+</div>
+</body>
+</html>

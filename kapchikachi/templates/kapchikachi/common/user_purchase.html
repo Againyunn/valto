@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구매내역</title>
+</head>
+<body>
+
+<!--로그인한 사용자 식별용-->
+{% if request.user.is_authenticated %}
+    <p>{{ request.user.username }}</p>
+{% endif %}
+
+
+{{total_num}}
+{% for a in total_num %}
+<!--유저표시-->
+
+
+<div>
+    <!--구매일자-->
+구매일시:
+<br>
+{{ user_purchase_time.a }}
+
+</div>
+
+<br>
+<div>
+    <!--구매상품-->
+구매상품:
+<br>
+    {% for b in user_product_type %}
+    {{ b }}
+    {% endfor %}
+</div>
+
+<br>
+<div>
+    <!--구매가격-->
+구매가격:
+<br>
+{{ user_purchase_amount.a }}
+</div>
+
+<br>
+<div>
+    <!--수취인성함-->
+수취인성함:
+<br>
+{{ user_receiver_name.a }}
+</div>
+
+<br>
+<div>
+    <!--수취인번호-->
+수취인번호:
+<br>
+{{ user_receiver_phone.a }}
+</div>
+
+<br>
+<div>
+    <!--상세주소-->
+상세주소:
+<br>
+{{ user_receiver_address.a }}
+</div>
+
+{% endfor %}
+</body>
+</html>

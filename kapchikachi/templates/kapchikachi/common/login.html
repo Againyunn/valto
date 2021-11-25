@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  
+   <!-- Bootstrap core JS-->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script> 
+   <link rel="stylesheet" href = "{% static 'css/styles.css'%}">   
+      <!--자동 업데이트 로직(수정 금지)-->
+      <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    var auto_refresh = setInterval(
+    function ()
+    {
+    $('#load_tweets').load('refresh.html').fadeIn("slow");
+    }, 5000);
+    </script>
+
+      <!-- Font Awesome icons (free version)-->
+      <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+      <!-- Core theme CSS (includes Bootstrap)-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/
+      Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+      integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:white;">
+<div class="container my-3">
+
+  <!--  회원가입 기능-->
+
+  
+  <section class="page-section about-heading">
+  <div class="about-heading-content">
+    <div class="col-4">
+      <h1>Log-in</h1>
+    </div>
+    <div class="col-8 text-right">
+      <span>
+        <a href="{% url 'common:signup' %}">회원가입</a>
+      </span>
+    </div>
+  </div>
+
+  <!--  로그인 창 구현-->
+  <div class="container bg-primary">
+  <form method="post" class="post-form" action="{% url 'common:login' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {% include "./formerrors.html" %}
+    
+    <div class="form-group">
+      <label for="username">ID</label>
+      <input type="text" class="form-control" name="username" id="username"
+             value="{{ form.username.value|default_if_none:'' }}">
+    </div>
+
+    <div class="form-gruop">
+      <label for="password">비밀번호</label>
+      <input type="password" class="form-control" name="password" id="password"
+             value="{{ form.password.value|default_if_none:'' }}">
+    </div>
+    <button type="submit">로그인</button>
+  </form>
+</div>
+</section>
+  <!--  소셜로그인 구형-->
+</div>
+</body>
+</html>

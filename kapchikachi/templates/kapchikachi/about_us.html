@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>같이가치 소개</title>
+</head>
+<body>
+
+<!--로그인한 사용자 식별용-->
+<div>
+{% if request.user.is_authenticated %}
+    <p>{{ request.user.username }}</p>
+    <br>
+    <a href="{% url 'common:logout' %}">로그아웃</a>
+    <br>
+<!--    개인 계정 페이지로 이동(개인정보확인 및 수정/ 구매내역 확인)-->
+{% else %}
+    <a href="{% url 'common:login' %}">로그인</a>
+{% endif %}
+</div>
+
+
+
+<!--GBT소개-->
+
+
+
+<!--캡스톤디자인 소개-->
+
+
+
+<!--팀원 소개-->
+
+
+
+
+</body>
+</html>

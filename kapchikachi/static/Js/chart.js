@@ -1,0 +1,21 @@
+d3
+.select("#bargraphAnimal")
+.selectAll("span")
+.datum(function(){return this.dataset;})
+.style("width","50%")
+.transition().duration(2000)
+.style("width",d=>d.val)
+
+d3.select("#barDog")
+   .selectAll("span")
+   .datum(function(){return this.dataset;})
+   .style("width","33%")
+   .transition().duration(2000)
+   .style("width",d=>d.val)
+
+   d3.select("#barCat")
+   .selectAll("span")
+   .datum(function(){return this.dataset;})
+   .style("width","33%")
+   .transition().duration(2000)
+   .style("width",d=>d.val)

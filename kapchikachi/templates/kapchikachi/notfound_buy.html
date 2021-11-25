@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>구매이력이 없습니다</title>
+    {% load static %}  
+    <link rel="stylesheet" href = "{%static 'css/styles.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+    <!--자동 업데이트 로직(수정 금지)-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+    <script type="text/javascript">
+   // var auto_refresh = setInterval(
+   // function ()
+   // {
+     //   $('#load_tweets').load('refresh.html').fadeIn("slow");
+//}, 5000);
+</script>
+<!--자동 업데이트 로직(수정 금지)-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+    integrity="sha384-Smlep5jCw/wG7hdkwQ/
+    Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+    integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <section class="page-section about-heading" >
+        <div class="container">
+            <div class="about-heading-content">
+                
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 mx-auto" style="align-content: center;">
+                        
+                        <div class="  p-3" style="text-align: center;">
+                            <a href="{% url 'kapchikachi:main' %}"><img src="{%static 'img/valto.png'%}" style=" max-width: 300px;max-height: 300px;" class="img-fluid"></a>
+                            <p style="font-family: GyeonggiTitleM;font-size: 4vh;"><b>구매내역이 없습니다</b></p>
+                        
+                               
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
