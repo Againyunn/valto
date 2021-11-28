@@ -41,37 +41,37 @@
 
 
 <body style="background-color:white;">
-        <!--사이트 헤더-->
-        <header class="header bg-white bg-opacity-100" >
-    
+<!--사이트 헤더-->
+<header class="header bg-white bg-opacity-100" >
 
-            {% load socialaccount %}
-            {% if request.user.is_authenticated %}
-            <div class="row">
-                <div class="col-6">
-                    
-            </div>
-            <div class="col-6">
-                <a style="font-family:GyeonggiTitleM;float:right;text-decoration:none;color:black;" href="{% url 'common:logout' %}">로그아웃</a><br>
-                <a href="{% url 'kapchikachi:Check_personal_buy' %}" style="font-family: GyeonggiTitleM;float: right;text-decoration:none;color:black;">구매이력</a></div>
-                
-               
-            </div>
-            </div>
-        <!--    개인 계정 페이지로 이동(개인정보확인 및 수정/ 구매내역 확인)-->
-        {% else %}
-        <div class="row">
-            <div class="col-6">
-                <a style="font-family:GyeonggiTitleM;float:left;text-decoration:none;"></a></div>
-            <div class="col-6">
-                <a href="{% url 'common:login' %}" style="font-family: GyeonggiTitleM;float:right;color:black;">Log-in</a>
-            </div>
+
+    {% load socialaccount %}
+    {% if request.user.is_authenticated %}
+    <div class="row">
+        <div class="col-6">
+
         </div>
-        {% endif %}
-    
-        
-        
-         <span class="site-heading"style="text-align :center;">
+        <div class="col-6">
+            <a style="font-family:GyeonggiTitleM;float:right;text-decoration:none;color:black;" href="{% url 'common:logout' %}">로그아웃</a><br>
+            <a href="{% url 'kapchikachi:Check_personal_buy' %}" style="font-family: GyeonggiTitleM;float: right;text-decoration:none;color:black;">구매이력</a></div>
+
+
+    </div>
+    </div>
+    <!--    개인 계정 페이지로 이동(개인정보확인 및 수정/ 구매내역 확인)-->
+    {% else %}
+    <div class="row">
+        <div class="col-6">
+            <a style="font-family:GyeonggiTitleM;float:left;text-decoration:none;"></a></div>
+        <div class="col-6">
+            <a href="{% url 'common:login' %}" style="font-family: GyeonggiTitleM;float:right;color:black;">Log-in</a>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+    <span class="site-heading"style="text-align :center;">
             <div class="row"><a href="{% url 'kapchikachi:main' %}"><img src="{%static 'img/logo2-remove.png'%}" style="max-width: 200px;max-height: 200px;margin-left: auto;margin-right: auto;color:black;"></a></div>
                 <div class="row"style="background-color:blanchedalmond;padding-bottom:10px;padding-top: 10px;" >   
                     <div class="col-4"><a href="{% url 'kapchikachi:main' %}" style="font-family:GyeonggiTitleM;font-size:2.5vh;padding-top: 5px;text-decoration:none;color:black;"><b>Home</b></a></div>
@@ -79,40 +79,22 @@
                     <div class="col-4"><a href="{% url 'kapchikachi:SelectPayOption' %}" id ="Shopping"style="font-family:GyeonggiTitleM;font-size:2.5vh;padding-top: 5px;text-decoration:none;color:black;"><b>Shopping</b></a></div>
             </div>    
         </span>
-    </header>
+</header>
 
 
 
-    {% load crispy_forms_tags %}
-    {% if request.user.is_authenticated %}
+{% load crispy_forms_tags %}
+{% if request.user.is_authenticated %}
 
-    {% endif %}
+{% endif %}
 <!--코멘트 생성 기능-->
 <div class="container">
-  
+
     <div style="text-align: center;font-family:GyeonggiTitleM;margin-top: 20px;"><b><span style="color:#e6a756;">VALTO</span> 프로젝트는 여러분들이 구매해주시는<br> 제품의 수익금의  50%를<br>
         <span style="color:orange;">동물자유연대</span>에 기부하는 프로젝트 입니다.<br>
         유기동물에 대한 여러분들의 관심을<br>
         이 프로젝트로<br> 버려진 아이들에게 사랑을 전합니다 ♡</b></div>
     <h1 style="font-family:GyeonggiTitleM;margin-top: 20px;margin-bottom: 20px;"> <b>상품목록 </b></h1>
-    <div class="row" style="align-content: center;">
-        <div class=" col-lg-2"></div>
-        <div class="col-6  col-lg-4">
-            <a href="{% url 'kapchikachi:CatAirpod12' %}"><img src="{%static 'img/catairpodpro4.jpg'%}" class="img-thumbnail" ></a>
-            <br>
-            <h5 style="font-family:GyeonggiTitleM;"><b>고양이 에어팟 1•2 세대 케이스</b></h5>
-            <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b> </h5>
-        </div>
-        <div class=" col-6  col-lg-4">
-            <a href="{% url 'kapchikachi:CatAirpodpro' %}"> <img src="{%static 'img/cpro1.jpg'%}" class="img-thumbnail"  ></a>
-            <br>
-            <h5  style="font-family:GyeonggiTitleM;"><b>고양이 에어팟프로 케이스</b></h5>
-            <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b></h5>
-
-        </div>
-        <div class=" col-lg-2"></div>
-    </div>
-     
     <div class="row" style="align-content: center;">
         <div class=" col-lg-2"></div>
         <div class=" col-6  col-lg-4" >
@@ -123,21 +105,45 @@
                 <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b> </h5>
             </div>
         </div>
+
+        <div class="col-6  col-lg-4">
+                <a href="{% url 'kapchikachi:CatAirpod12' %}"><img src="{%static 'img/catairpodpro4.jpg'%}" class="img-thumbnail" ></a>
+                <br>
+                <h5 style="font-family:GyeonggiTitleM;"><b>고양이 에어팟 1•2 세대 케이스</b></h5>
+                <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b> </h5>
+            </div>
+        <div class=" col-lg-2"></div>
+    </div>
+
+    <div class="row" style="align-content: center;">
+        <div class=" col-lg-2"></div>
         <!------강아지 에어팟-->
         <div class=" col-6  col-lg-4">
             <a href="{% url 'kapchikachi:DogAirpodpro' %}"><img src="{%static 'img/dogairpodPro.jpg'%}" class="img-thumbnail" ></a>
             <br>
             <h5 style="font-family:GyeonggiTitleM;"> <b>강아지 에어팟 프로 케이스</b></h5>
             <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b></h5>
+        </div>
 
+        <div class=" col-6  col-lg-4">
+            <a href="{% url 'kapchikachi:CatAirpodpro' %}"> <img src="{%static 'img/cpro1.jpg'%}" class="img-thumbnail"  ></a>
+            <br>
+            <h5  style="font-family:GyeonggiTitleM;"><b>고양이 에어팟프로 케이스</b></h5>
+            <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 8,900원</b></h5>
 
         </div>
         <div class=" col-lg-2"></div>
-  
     </div>
 
     <div class ="row" style="align-content: center;">
         <div class=" col-lg-2"></div>
+        <div class=" col-6  col-lg-4">
+            <a href="{% url 'kapchikachi:DogKeyring' %}"><img src="{%static 'img/dogkeyrings.jpg'%}" class="img-thumbnail" ></a>
+            <br>
+            <h5  style="font-family:GyeonggiTitleM;"><b>강아지 키링</b></h5>
+            <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 5,000원</b></h5>
+        </div>
+
         <div class=" col-6 col-lg-4">
 
             <a href ="{% url 'kapchikachi:CatKeyring' %}"><img src="{%static 'img/catkeyrings.jpg'%}" class="img-thumbnail" ></a>
@@ -146,12 +152,6 @@
             <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 5,000원</b></h5>
         </div>
 
-        <div class=" col-6  col-lg-4">
-            <a href="{% url 'kapchikachi:DogKeyring' %}"><img src="{%static 'img/dogkeyrings.jpg'%}" class="img-thumbnail" ></a>
-            <br>
-            <h5  style="font-family:GyeonggiTitleM;"><b>강아지 키링</b></h5>
-            <h5 style="font-family:GyeonggiTitleM;"><b>가격 : 5,000원</b></h5>
-        </div>
         <div class=" col-lg-2"></div>
     </div>
 </div>
@@ -192,6 +192,7 @@
             <tbody>
             <tr style="font-size: 2vh;">
                 {{ form.shipping|as_crispy_field}}
+                <p style="font-size:small; color: #708090">직접수령 가능 지역 문의: <a href="https://open.kakao.com/me/value_together" style="font-family:GyeonggiTitleM;font-size:1.5vh; color:#3B170B;margin-top:2px;">오픈카카오톡</a></p>
                 <h4 style="color:red">{{warning}}</h4>
             </tr>
 
@@ -212,14 +213,11 @@
 
             <tr style="font-size: 2vh;">
                 {{ form.deposit_name|as_crispy_field}}
-
             </tr>
-
-         
 
             <tr style="font-size: 2vh;">
                 {{ form.content|as_crispy_field}}
-
+                <small style="font-size:small; color: #708090">*석수: 한국외대 글로벌캠퍼스 기숙사 인근에 사는 고양이입니다 :)</small>
             </tr>
 
             </tbody>
