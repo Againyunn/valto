@@ -24,3 +24,6 @@
 
 ## 웹 사이트 주소:
 http://valto.shop
+
+## 개인 블로그 리뷰:
+https://blog.naver.com/rangyun/222619359347
