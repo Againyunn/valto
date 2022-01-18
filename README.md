@@ -27,4 +27,5 @@ http://valto.shop
 
 ## 개인 블로그 리뷰:
 프로젝트 전반 소개: https://blog.naver.com/rangyun/222619359347
+
 웹 사이트 개발 로그: https://blog.naver.com/rangyun/222625247804
