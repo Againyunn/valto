@@ -1,0 +1,29 @@
+<div id="myModal" class="modal" style=" display: flex; justify-content: center;">
+    <div class="modal-content"
+        style="text-align: center;width: 400px;height: 400px;margin-left: auto; margin-right: auto;">
+        <img src="{%static 'img/specialsale.jpg'%}" class="img-fluid">
+        <button class="btn btn-secondary" style="font-size: 13pt;font-family:GyeonggiTitleM ;" onClick="close_pop();">
+            <b>´Ý±â</b>
+        </button>
+        <script type="text/javascript">
+            let isElement = document.querySelector('#myModal');
+            isElement.style.opacity = 0.1;
+            function Effect_With_JS() {
+                let isCount = 0;
+                isElement.style.opacity = 0.1;
+                let period = setInterval(function () {
+                    isElement.style.opacity = isCount;
+                    isCount = isCount + 0.1;
+                    if (isCount > 1.0) {
+                        clearInterval(period);
+                    }
+                }, 100);
+            }
+            Effect_With_JS();
+            //ÆË¾÷ Close ±â´É
+            function close_pop(flag) {
+                $('#myModal').fadeOut();
+            };
+        </script>
+    </div>
+</div>
